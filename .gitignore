@@ -1,2 +1,8 @@
 var.env
 *.exe
+bleve/**
+logs/**
+mongo-volume/**
+secrets/**
+ssl/**
+
