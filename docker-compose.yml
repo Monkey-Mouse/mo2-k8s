@@ -28,9 +28,9 @@ services:
       - "mo2notificationlog"
       - "mo2search"
       - "mo2imglog"
-    # ports:
-    #   # used for local debug
-    #   - "5001:5001"
+    ports:
+      # used for local debug
+      - "5001:5001"
     volumes:
       - "./secrets:/app/secrets"
       - "./logs:/app/logs"
