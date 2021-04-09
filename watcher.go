@@ -32,9 +32,7 @@ func main() {
 		fmt.Println(string(cmd))
 		ctx.JSON(http.StatusOK, nil)
 	}, 1)
-	middleware.H.RegisterMapedHandlers(r, func(ctx *gin.Context) (uinfo middleware.RoleHolder, err error) {
-		return &nilRoleHolder{}, nil
-	}, "", &middleware.OptionalParams{
+	middleware.H.RegisterMapedHandlers(r, &middleware.OptionalParams{
 		LimitEvery:   10,
 		Unblockevery: 3600,
 		UseRedis:     false,

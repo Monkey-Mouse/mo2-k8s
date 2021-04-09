@@ -4,6 +4,8 @@ github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6Xge
 github.com/Monkey-Mouse/go-abac v0.0.0-20210325070221-9ac98bef4f09/go.mod h1:5XazCKWUs0VB5CcreieUr0g+ePYgvggii1yxxtDgotY=
 github.com/Monkey-Mouse/mo2 v0.0.0-20210409085350-f3d3104a15dc h1:8SxoRqyw+HFST7x5dFZRyPcL5L7UZAfhCRMWDpk+/dU=
 github.com/Monkey-Mouse/mo2 v0.0.0-20210409085350-f3d3104a15dc/go.mod h1:I6UJq+fCE0qTdqejf0Dr0VvqOWZtxnhE7TBlNlSIqIY=
+github.com/Monkey-Mouse/mo2 v0.0.0-20210409093102-d27425bfa359 h1:ghORv63Y0u+F/X8VCo83EaOqh6tq8vWJtEk0/c4rC5c=
+github.com/Monkey-Mouse/mo2 v0.0.0-20210409093102-d27425bfa359/go.mod h1:I6UJq+fCE0qTdqejf0Dr0VvqOWZtxnhE7TBlNlSIqIY=
 github.com/Monkey-Mouse/mo2log v0.0.3-0.20210407012516-345020380858/go.mod h1:EWKvMgqbzX1+tJaFJgyms42TPbw8MUiUEpgODng2EM0=
 github.com/PuerkitoBio/purell v1.1.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
 github.com/PuerkitoBio/purell v1.1.1/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
