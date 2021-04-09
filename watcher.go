@@ -7,12 +7,20 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/Monkey-Mouse/mo2/server/middleware"
 	"github.com/gin-gonic/gin"
 )
 
+type nilRoleHolder struct {
+}
+
+func (h *nilRoleHolder) IsInRole(role string) bool {
+	return true
+}
+
 func main() {
 	r := gin.Default()
-	r.POST("/post", func(ctx *gin.Context) {
+	middleware.H.PostWithRL("/post", func(ctx *gin.Context) {
 		dir, _ := os.Getwd()
 		fmt.Println("enter", dir)
 		ex := exec.Command("/bin/bash", "./refresh.bash")
@@ -23,6 +31,13 @@ func main() {
 		}
 		fmt.Println(string(cmd))
 		ctx.JSON(http.StatusOK, nil)
+	}, 1)
+	middleware.H.RegisterMapedHandlers(r, func(ctx *gin.Context) (uinfo middleware.RoleHolder, err error) {
+		return &nilRoleHolder{}, nil
+	}, "", &middleware.OptionalParams{
+		LimitEvery:   10,
+		Unblockevery: 3600,
+		UseRedis:     false,
 	})
 	r.Run(":5002")
 }
