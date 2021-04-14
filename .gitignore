@@ -5,4 +5,4 @@ logs/**
 mongo-volume/**
 secrets/**
 ssl/**
-
+*watcher

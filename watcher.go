@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -27,7 +26,7 @@ func main() {
 		fmt.Println("exec")
 		cmd, err := ex.Output()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
 		}
 		fmt.Println(string(cmd))
 		ctx.JSON(http.StatusOK, nil)
