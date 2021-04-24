@@ -69,6 +69,13 @@ services:
     volumes:
       - "./bleve:/app/.bleve"
 
+  yjs:
+    image: registry.cn-hangzhou.aliyuncs.com/mo2/yjs-server:latest
+    container_name: yjs
+    restart: always
+    environment:
+      - HOST=yjs
+
   nginx:
     image: registry.cn-hangzhou.aliyuncs.com/mo2/nginx-le:latest
     hostname: nginx
