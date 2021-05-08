@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: yjs
+  name: yjs
+spec:
+  ports:
+    - name: "1234"
+      port: 1234
+      targetPort: 1234
+  selector:
+    io.kompose.service: yjs
+status:
+  loadBalancer: {}

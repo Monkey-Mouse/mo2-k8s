@@ -1,10 +1,10 @@
 # Mo2-compose
-用来启动Mo2的docker-compose  
-
+用来启动Mo2的~~docker-compose~~k8s配置文件  
+自2021/5/8日起，mo2的生产环境由docker compose升级为k8s  
 ## Architecture
 ![arch](architecture.png)
 
-## 如何使用
+## 如何使用（已过时）
 如果你只是想运行或部署Mo2项目而不对他的源码感兴趣，使用docker无疑是你最好的选择。  
 - 首先，你需要安装[docker](https://docs.docker.com/engine/install/)以及[docker-compose](https://docs.docker.com/compose/install/)  
 - 然后，你需要clone此项目

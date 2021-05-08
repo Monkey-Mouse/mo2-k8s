@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mo2imglog
+  name: mo2imglog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mo2imglog
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mo2imglog
+    spec:
+      containers:
+        - env:
+            - name: LOG_COL
+              value: notificationLog
+            - name: LOG_PORT
+              value: "9990"
+            - name: MO2_DATABASE
+              value: mo2
+            - name: MO2_MONGO_URL
+              value: mongodb://mongodb:27017
+          image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2log:latest
+          name: mo2imglog
+          ports:
+            - containerPort: 9990
+          resources: {}
+      restartPolicy: Always
+status: {}

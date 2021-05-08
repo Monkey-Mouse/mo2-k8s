@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: yjs
+  name: yjs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: yjs
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: yjs
+    spec:
+      containers:
+        - env:
+            - name: HOST
+              value: 0.0.0.0
+          image: registry.cn-hangzhou.aliyuncs.com/mo2/yjs-server:latest
+          name: yjs
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}

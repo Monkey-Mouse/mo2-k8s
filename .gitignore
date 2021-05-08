@@ -6,3 +6,4 @@ mongo-volume/**
 secrets/**
 ssl/**
 *watcher
+k8s/var-env-configmap.yaml

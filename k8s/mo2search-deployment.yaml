@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mo2search
+  name: mo2search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mo2search
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mo2search
+    spec:
+      containers:
+        - image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2search:latest
+          name: mo2search
+          ports:
+            - containerPort: 5097
+          resources: {}
+          volumeMounts:
+            - mountPath: /app/.bleve
+              name: mo2search-claim0
+      restartPolicy: Always
+      volumes:
+        - name: mo2search-claim0
+          persistentVolumeClaim:
+            claimName: mo2search-claim0
+status: {}

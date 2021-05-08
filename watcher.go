@@ -22,7 +22,7 @@ func main() {
 	middleware.H.PostWithRL("/post", func(ctx *gin.Context) {
 		dir, _ := os.Getwd()
 		fmt.Println("enter", dir)
-		ex := exec.Command("/bin/bash", "./refresh.bash")
+		ex := exec.Command("/bin/bash", "./k8sImageUpdate.bash")
 		fmt.Println("exec")
 		cmd, err := ex.Output()
 		if err != nil {

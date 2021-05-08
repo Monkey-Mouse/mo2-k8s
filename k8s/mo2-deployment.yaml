@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mo2
+  name: mo2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mo2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mo2
+    spec:
+      containers:
+        - env:
+            - name: COMMENT_LOG
+              value: mo2notificationlog:9990
+            - name: GITHUB_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: GITHUB_ID
+                  name: var-env
+            - name: GITHUB_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: GITHUB_SECRET
+                  name: var-env
+            - name: IMG_LOG
+              value: mo2imglog:9990
+            - name: MO2_SEARCH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: MO2_SEARCH_HOST
+                  name: var-env
+            - name: MO2_SUPER_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: MO2_SUPER_KEY
+                  name: var-env
+            - name: emailAddr
+              valueFrom:
+                configMapKeyRef:
+                  key: emailAddr
+                  name: var-env
+            - name: emailPass
+              valueFrom:
+                configMapKeyRef:
+                  key: emailPass
+                  name: var-env
+            - name: qiniuak
+              valueFrom:
+                configMapKeyRef:
+                  key: qiniuak
+                  name: var-env
+            - name: qiniusk
+              valueFrom:
+                configMapKeyRef:
+                  key: qiniusk
+                  name: var-env
+          image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2:latest
+          name: mo2
+          ports:
+            - containerPort: 5001
+          resources: {}
+          volumeMounts:
+            - mountPath: /app/secrets
+              name: mo2-claim0
+            - mountPath: /app/logs
+              name: mo2-claim1
+      restartPolicy: Always
+      volumes:
+        - name: mo2-claim0
+          persistentVolumeClaim:
+            claimName: mo2-claim0
+        - name: mo2-claim1
+          persistentVolumeClaim:
+            claimName: mo2-claim1
+status: {}
