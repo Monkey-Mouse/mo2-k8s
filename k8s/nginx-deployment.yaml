@@ -47,7 +47,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/nginx/ssl
               name: nginx-claim0
-            - mountPath: /etc/nginx/service.conf
+            - mountPath: /etc/nginx/conf.d
               name: nginx-claim1
       hostname: nginx
       restartPolicy: Always

@@ -12,5 +12,14 @@ spec:
     storage: 100Mi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/mnt/mo2/nginx/service.conf/nginx.conf"
+  volumeMode: Filesystem
+  local:
+    path: "/mnt/mo2/nginx/service.conf"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - izwz9iyowiok93f5x0h8faz
