@@ -10,13 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type nilRoleHolder struct {
-}
-
-func (h *nilRoleHolder) IsInRole(role string) bool {
-	return true
-}
-
 func main() {
 	r := gin.Default()
 	middleware.H.PostWithRL("/post", func(ctx *gin.Context) {
@@ -24,9 +17,10 @@ func main() {
 		fmt.Println("enter", dir)
 		ex := exec.Command("/bin/bash", "./k8sImageUpdate.bash")
 		fmt.Println("exec")
+
 		cmd, err := ex.Output()
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println(string(err.(*exec.ExitError).Stderr))
 		}
 		fmt.Println(string(cmd))
 		ctx.JSON(http.StatusOK, nil)
