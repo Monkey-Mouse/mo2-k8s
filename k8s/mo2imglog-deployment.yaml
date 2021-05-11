@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: mo2imglog
   name: mo2imglog
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       io.kompose.service: mo2imglog

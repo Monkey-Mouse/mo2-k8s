@@ -13,13 +13,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
-  local:
+  nfs:
+    server: 172.22.174.157
     path: "/mnt/mo2/nginx/service.conf"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - izwz9iyowiok93f5x0h8faz
