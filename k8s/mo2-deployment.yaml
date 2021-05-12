@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.22.0 (955b78124)
-  creationTimestamp: null
+
   labels:
     io.kompose.service: mo2
   name: mo2
@@ -20,7 +20,7 @@ spec:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.22.0 (955b78124)
-      creationTimestamp: null
+
       labels:
         io.kompose.service: mo2
     spec:
@@ -30,12 +30,12 @@ spec:
               value: mo2notificationlog:9990
             - name: GITHUB_ID
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: GITHUB_ID
                   name: var-env
             - name: GITHUB_SECRET
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: GITHUB_SECRET
                   name: var-env
             - name: IMG_LOG
@@ -47,27 +47,27 @@ spec:
                   name: var-env
             - name: MO2_SUPER_KEY
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: MO2_SUPER_KEY
                   name: var-env
             - name: emailAddr
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: emailAddr
                   name: var-env
             - name: emailPass
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: emailPass
                   name: var-env
             - name: qiniuak
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: qiniuak
                   name: var-env
             - name: qiniusk
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: qiniusk
                   name: var-env
           image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2:latest
