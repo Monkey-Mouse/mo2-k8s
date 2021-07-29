@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mo2front
+  name: mo2front
+spec:
+  ports:
+    - name: "8110"
+      port: 8110
+      targetPort: 8110
+  selector:
+    app: mo2front
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mo2front
+  name: mo2front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mo2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+
+      labels:
+        io.kompose.service: mo2front
+    spec:
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2-front:latest
+        name: mo2front
+        ports:
+          - containerPort: 8110
+        resources: {}
+    restartPolicy: Always
+status: {}
+
