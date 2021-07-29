@@ -12,7 +12,9 @@ spec:
     storage: 100Mi
   accessModes:
     - ReadWriteOnce
-  volumeMode: Filesystem
-  nfs:
-    server: 172.22.174.157
+  hostPath:
     path: "/mnt/mo2/nginx/ssl"
+  # volumeMode: Filesystem
+  # nfs:
+  #   server: 172.22.174.157
+  #   path: "/mnt/mo2/nginx/ssl"

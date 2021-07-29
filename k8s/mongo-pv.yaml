@@ -12,7 +12,9 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  volumeMode: Filesystem
-  nfs:
-    server: 172.22.174.157
+  hostPath:
     path: "/mnt/mo2/mongo"
+  # volumeMode: Filesystem
+  # nfs:
+  #   server: 172.22.174.157
+  #   path: "/mnt/mo2/mongo"

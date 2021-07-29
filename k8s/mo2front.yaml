@@ -25,14 +25,14 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: mo2
+      app: mo2front
   strategy:
     type: Recreate
   template:
     metadata:
 
       labels:
-        io.kompose.service: mo2front
+        app: mo2front
     spec:
       containers:
       - image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2-front:latest
@@ -40,6 +40,7 @@ spec:
         ports:
           - containerPort: 8110
         resources: {}
-    restartPolicy: Always
+      restartPolicy: Always
 status: {}
+
 

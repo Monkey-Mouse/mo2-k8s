@@ -29,7 +29,7 @@ spec:
               value: "yes"
             - name: REDIS_DISABLE_COMMANDS
               value: FLUSHDB,FLUSHALL
-          image: bitnami/redis
+          image: redis
           name: redis
           ports:
             - containerPort: 6379

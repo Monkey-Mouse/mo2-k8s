@@ -26,6 +26,7 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+#      nodeName: izwz9iyowiok93f5x0h8faz
       containers:
         - env:
             - name: LETSENCRYPT
