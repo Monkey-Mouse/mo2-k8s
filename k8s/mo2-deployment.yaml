@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: mo2
   name: mo2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       io.kompose.service: mo2
@@ -24,6 +24,7 @@ spec:
       labels:
         io.kompose.service: mo2
     spec:
+      priorityClassName: high-priority
       containers:
         - env:
             - name: COMMENT_LOG
@@ -71,10 +72,16 @@ spec:
                   key: qiniusk
                   name: var-env
           image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2:latest
+          resources:
+            limits:
+              cpu: 500m
+              memory: 100Mi
+            requests: 
+              cpu: 50m
+              memory: 50Mi
           name: mo2
           ports:
             - containerPort: 5001
-          resources: {}
           volumeMounts:
             - mountPath: /app/secrets
               name: mo2-claim0

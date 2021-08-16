@@ -34,12 +34,19 @@ spec:
       labels:
         app: mo2front
     spec:
+      priorityClassName: high-priority
       containers:
       - image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2-front:latest
         name: mo2front
         ports:
           - containerPort: 8110
-        resources: {}
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests: 
+            cpu: 10m
+            memory: 50Mi
       restartPolicy: Always
 status: {}
 

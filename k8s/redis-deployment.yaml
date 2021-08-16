@@ -23,6 +23,7 @@ spec:
       labels:
         io.kompose.service: redis
     spec:
+      priorityClassName: high-priority
       containers:
         - env:
             - name: ALLOW_EMPTY_PASSWORD
@@ -33,6 +34,12 @@ spec:
           name: redis
           ports:
             - containerPort: 6379
-          resources: {}
+          resources:
+            limits:
+              cpu: 60m
+              memory: 50Mi
+            requests: 
+              cpu: 30m
+              memory: 30Mi
       restartPolicy: Always
 status: {}

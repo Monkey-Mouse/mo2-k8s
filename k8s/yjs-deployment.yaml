@@ -31,6 +31,12 @@ spec:
           name: yjs
           ports:
             - containerPort: 80
-          resources: {}
+          resources:
+            limits:
+              cpu: 60m
+              memory: 50Mi
+            requests: 
+              cpu: 30m
+              memory: 30Mi
       restartPolicy: Always
 status: {}

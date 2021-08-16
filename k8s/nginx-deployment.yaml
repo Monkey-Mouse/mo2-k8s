@@ -24,6 +24,7 @@ spec:
       labels:
         io.kompose.service: nginx
     spec:
+      priorityClassName: high-priority
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
 #      nodeName: izwz9iyowiok93f5x0h8faz
@@ -44,7 +45,13 @@ spec:
               containerPort: 80
             - name: "p443"
               containerPort: 443
-          resources: {}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 50Mi
+            requests: 
+              cpu: 30m
+              memory: 30Mi
           volumeMounts:
             - mountPath: /etc/nginx/ssl
               name: nginx-claim0
