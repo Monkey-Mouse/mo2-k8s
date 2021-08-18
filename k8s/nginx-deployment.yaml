@@ -47,10 +47,10 @@ spec:
               containerPort: 443
           resources:
             limits:
-              cpu: 500m
-              memory: 50Mi
+              cpu: 200m
+              memory: 30Mi
             requests: 
-              cpu: 30m
+              cpu: 200m
               memory: 30Mi
           volumeMounts:
             - mountPath: /etc/nginx/ssl

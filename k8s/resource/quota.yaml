@@ -4,6 +4,7 @@ metadata:
   name: default-limit
 spec:
   hard:
-    cpu: "1"
-    memory: 2Gi
+    requests.cpu: "2"
+    limits.cpu: "3"
+    memory: 4Gi
     pods: "30"

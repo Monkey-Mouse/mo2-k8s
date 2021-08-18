@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: mo2notificationlog
   name: mo2notificationlog
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       io.kompose.service: mo2notificationlog
@@ -39,10 +39,29 @@ spec:
             - containerPort: 9990
           resources:
             limits:
-              cpu: 60m
+              cpu: 30m
               memory: 50Mi
             requests: 
               cpu: 30m
               memory: 30Mi
       restartPolicy: Always
 status: {}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mo2notificationlog
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mo2notificationlog
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60

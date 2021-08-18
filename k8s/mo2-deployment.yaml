@@ -74,10 +74,10 @@ spec:
           image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2:latest
           resources:
             limits:
-              cpu: 500m
+              cpu: 200m
               memory: 100Mi
             requests: 
-              cpu: 50m
+              cpu: 200m
               memory: 50Mi
           name: mo2
           ports:
@@ -96,3 +96,22 @@ spec:
           persistentVolumeClaim:
             claimName: mo2-claim1
 status: {}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mo2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mo2
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60

@@ -22,7 +22,7 @@ metadata:
     app: mo2front
   name: mo2front
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mo2front
@@ -42,12 +42,31 @@ spec:
           - containerPort: 8110
         resources:
           limits:
-            cpu: 50m
+            cpu: 100m
             memory: 100Mi
           requests: 
-            cpu: 10m
+            cpu: 100m
             memory: 50Mi
       restartPolicy: Always
 status: {}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mo2front
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mo2front
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
 
 
