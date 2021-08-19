@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hr-admin
+  namespace: pivothr
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hr-admin
+  namespace: pivothr
+subjects:
+# 你可以指定不止一个“subject（主体）”
+- kind: ServiceAccount
+  name: hr-admin
+  namespace: pivothr
+roleRef:
+  # "roleRef" 指定与某 Role 或 ClusterRole 的绑定关系
+  kind: Role # 此字段必须是 Role 或 ClusterRole
+  name: hr-admin     # 此字段必须与你要绑定的 Role 或 ClusterRole 的名称匹配
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: pivothr
+  name: hr-admin
+rules:
+- apiGroups: [""]
+  resources: ["pods","services","bindings","deployments","jobs","configmaps","secrets","replicasets","cronjobs","ingresses","persistentvolumes","persistentvolumeclaims","events","namespaces","pods"]
+  verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]

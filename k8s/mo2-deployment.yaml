@@ -74,7 +74,7 @@ spec:
           image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2:latest
           resources:
             limits:
-              cpu: 200m
+              cpu: 300m
               memory: 100Mi
             requests: 
               cpu: 200m
@@ -82,19 +82,12 @@ spec:
           name: mo2
           ports:
             - containerPort: 5001
-          volumeMounts:
-            - mountPath: /app/secrets
-              name: mo2-claim0
-            - mountPath: /app/logs
-              name: mo2-claim1
+      
+      initContainers:
+      - name: init-mongodb
+        image: busybox
+        command: ['sh', '-c', "until nslookup mongodb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mongodb; sleep 2; done"]
       restartPolicy: Always
-      volumes:
-        - name: mo2-claim0
-          persistentVolumeClaim:
-            claimName: mo2-claim0
-        - name: mo2-claim1
-          persistentVolumeClaim:
-            claimName: mo2-claim1
 status: {}
 ---
 apiVersion: autoscaling/v2beta2

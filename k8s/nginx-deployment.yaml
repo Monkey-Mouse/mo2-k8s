@@ -27,15 +27,21 @@ spec:
       priorityClassName: high-priority
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-#      nodeName: izwz9iyowiok93f5x0h8faz
+      nodeName: backend-server-1
       containers:
         - env:
             - name: LETSENCRYPT
               value: "true"
             - name: LE_EMAIL
-              value: chronos@motwo.cn
+              valueFrom:
+                configMapKeyRef:
+                  key: LE_EMAIL
+                  name: var-env
             - name: LE_FQDN
-              value: www.motwo.cn
+              valueFrom:
+                configMapKeyRef:
+                  key: LE_FQDN
+                  name: var-env
             - name: TZ
               value: Asia/Shanghai
           image: registry.cn-hangzhou.aliyuncs.com/mo2/nginx-le:latest
@@ -47,23 +53,18 @@ spec:
               containerPort: 443
           resources:
             limits:
-              cpu: 200m
-              memory: 30Mi
+              cpu: 1000m
+              memory: 200Mi
             requests: 
               cpu: 200m
-              memory: 30Mi
+              memory: 200Mi
           volumeMounts:
             - mountPath: /etc/nginx/ssl
               name: nginx-claim0
-            - mountPath: /etc/nginx/conf.d
-              name: nginx-claim1
       hostname: nginx
       restartPolicy: Always
       volumes:
         - name: nginx-claim0
           persistentVolumeClaim:
             claimName: nginx-claim0
-        - name: nginx-claim1
-          persistentVolumeClaim:
-            claimName: nginx-claim1
 status: {}
