@@ -27,7 +27,7 @@ spec:
     matchLabels:
       app: mo2front
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
 

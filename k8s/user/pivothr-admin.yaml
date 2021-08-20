@@ -26,6 +26,6 @@ metadata:
   namespace: pivothr
   name: hr-admin
 rules:
-- apiGroups: [""]
+- apiGroups: ["","apps"]
   resources: ["pods","services","bindings","deployments","jobs","configmaps","secrets","replicasets","cronjobs","ingresses","persistentvolumes","persistentvolumeclaims","events","namespaces","pods"]
   verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
