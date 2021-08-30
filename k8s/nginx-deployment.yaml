@@ -27,7 +27,7 @@ spec:
       priorityClassName: high-priority
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      nodeName: backend-server-1
+      nodeName: backend-server-3
       containers:
         - env:
             - name: LETSENCRYPT

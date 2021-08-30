@@ -7,3 +7,4 @@ secrets/**
 ssl/**
 *watcher
 k8s/var-env-secrets.yaml
+sa.kubeconfig

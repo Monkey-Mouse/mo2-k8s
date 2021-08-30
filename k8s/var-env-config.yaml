@@ -4,5 +4,5 @@ metadata:
   name: var-env
 data:
   MO2_SEARCH_HOST: mo2search:5097
-  LE_EMAIL: chronos@motwo.cn
-  LE_FQDN: www.motwo.cn
+  LE_EMAIL: team@pivotstudio.cn
+  LE_FQDN: kshub.pivotstudio.cn

@@ -1,34 +1,31 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: hr-admin
-  namespace: pivothr
+  name: cu-admin
+  namespace: coder-union
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: hr-admin
-  namespace: pivothr
+  name: cu-admin
+  namespace: coder-union
 subjects:
 # 你可以指定不止一个“subject（主体）”
 - kind: ServiceAccount
-  name: hr-admin
-  namespace: pivothr
+  name: cu-admin
+  namespace: coder-union
 roleRef:
   # "roleRef" 指定与某 Role 或 ClusterRole 的绑定关系
   kind: Role # 此字段必须是 Role 或 ClusterRole
-  name: hr-admin     # 此字段必须与你要绑定的 Role 或 ClusterRole 的名称匹配
+  name: cu-admin     # 此字段必须与你要绑定的 Role 或 ClusterRole 的名称匹配
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: pivothr
-  name: hr-admin
+  namespace: coder-union
+  name: cu-admin
 rules:
 - apiGroups: ["*"]
   resources: ["*"]
   verbs: ["*"]
----
-
-

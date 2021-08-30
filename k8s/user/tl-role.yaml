@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hr-admin-tele
+  namespace: ambassador
+subjects:
+# 你可以指定不止一个“subject（主体）”
+- kind: ServiceAccount
+  name: hr-admin
+  namespace: pivothr
+- kind: ServiceAccount
+  name: cu-admin
+  namespace: coder-union
+roleRef:
+  # "roleRef" 指定与某 Role 或 ClusterRole 的绑定关系
+  kind: ClusterRole # 此字段必须是 Role 或 ClusterRole
+  name: telepresence-role     # 此字段必须与你要绑定的 Role 或 ClusterRole 的名称匹配
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: telepresence-role
+  namespace: ambassador
+rules:
+- apiGroups:
+  - ""
+  resources: ["pods"]
+  verbs: ["get", "list", "create", "watch", "delete"]
+- apiGroups:
+  - ""
+  resources: ["services"]
+  verbs: ["get", "list", "watch", "update"]
+- apiGroups:
+  - ""
+  resources: ["pods/portforward"]
+  verbs: ["create"]
+- apiGroups:
+  - "apps"
+  resources: ["deployments", "replicasets", "statefulsets"]
+  verbs: ["get", "list", "update"]
+- apiGroups:
+  - "getambassador.io"
+  resources: ["hosts", "mappings"]
+  verbs: ["*"]
+- apiGroups:
+  - ""
+  resources: ["endpoints"]
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - ""
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
