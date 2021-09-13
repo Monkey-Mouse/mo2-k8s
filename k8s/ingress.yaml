@@ -37,7 +37,26 @@ spec:
                 name: mo2front
                 port:
                   number: 8110
+    - host: kshub.pivotstudio.cn
+      http:
+        paths:
+        # 不同path转发到不同端口
+          - path: /api
+            pathType: Prefix
+            backend:
+              service: 
+                name: mo2
+                port: 
+                  number: 5001
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mo2front
+                port:
+                  number: 8110
   tls:
   - secretName: pivot-tls-cert
     hosts:
       - www.motwo.cn
+      - kshub.pivotstudio.cn
