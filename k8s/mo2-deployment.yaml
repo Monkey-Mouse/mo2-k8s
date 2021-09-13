@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: mo2
   name: mo2
+  namespace: mo2
 spec:
   replicas: 1
   selector:
@@ -41,6 +42,21 @@ spec:
                   name: var-env
             - name: IMG_LOG
               value: mo2imglog:9990
+            - name: MO2_MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGODB_URL
+                  name: var-env
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
+                  name: var-env
+            - name: REDIS_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PASS
+                  name: var-env
             - name: MO2_SEARCH_HOST
               valueFrom:
                 configMapKeyRef:
@@ -83,10 +99,6 @@ spec:
           ports:
             - containerPort: 5001
       
-      initContainers:
-      - name: init-mongodb
-        image: busybox
-        command: ['sh', '-c', "until nslookup mongodb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mongodb; sleep 2; done"]
       restartPolicy: Always
 status: {}
 ---
@@ -94,6 +106,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: mo2
+  namespace: mo2
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

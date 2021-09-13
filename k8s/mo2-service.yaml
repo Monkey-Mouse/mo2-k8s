@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: mo2
   name: mo2
+  namespace: mo2
 spec:
   ports:
     - name: "5001"

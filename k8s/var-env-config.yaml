@@ -2,7 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: var-env
+  namespace: mo2
 data:
   MO2_SEARCH_HOST: mo2search:5097
-  LE_EMAIL: team@pivotstudio.cn
-  LE_FQDN: kshub.pivotstudio.cn
+  MONGODB_URL: mongodb://mongodb.default.svc.cluster.local:27017
+  REDIS_URL: redis.default.svc.cluster.local:6379
+  REDIS_PASS: "12345678"

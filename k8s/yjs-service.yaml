@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: yjs
   name: yjs
+  namespace: mo2
 spec:
   ports:
     - name: "1234"

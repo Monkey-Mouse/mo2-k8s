@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: mo2notificationlog
   name: mo2notificationlog
+  namespace: mo2
 spec:
   ports:
     - name: "9990"

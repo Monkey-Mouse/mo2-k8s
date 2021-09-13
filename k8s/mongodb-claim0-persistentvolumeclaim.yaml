@@ -4,6 +4,7 @@ metadata:
   labels:
     io.kompose.service: mongodb-claim0
   name: mongodb-claim0
+  namespace: default
 spec:
   storageClassName: ""
   volumeName: mongo-pv

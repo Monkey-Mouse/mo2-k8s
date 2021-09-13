@@ -16,5 +16,5 @@ spec:
   #   path: "/mnt/mo2/mongo"
   volumeMode: Filesystem
   nfs:
-    server: 172.16.0.15
-    path: "/mnt/mo2/mongo"
+    server: 172.16.0.18
+    path: "/mnt/mongo"

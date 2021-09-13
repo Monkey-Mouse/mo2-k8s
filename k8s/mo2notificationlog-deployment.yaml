@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: mo2notificationlog
   name: mo2notificationlog
+  namespace: mo2
 spec:
   replicas: 1
   selector:
@@ -32,7 +33,10 @@ spec:
             - name: MO2_DATABASE
               value: mo2
             - name: MO2_MONGO_URL
-              value: mongodb://mongodb:27017
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGODB_URL
+                  name: var-env
           image: registry.cn-hangzhou.aliyuncs.com/mo2/mo2log:latest
           name: mo2notificationlog
           ports:
@@ -51,6 +55,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: mo2notificationlog
+  namespace: mo2
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

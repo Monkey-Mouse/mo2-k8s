@@ -16,5 +16,5 @@ spec:
   #   path: "/mnt/mo2/mo2search"
   volumeMode: Filesystem
   nfs:
-    server: 172.16.0.15
+    server: 172.16.0.18
     path: "/mnt/mo2/mo2search"

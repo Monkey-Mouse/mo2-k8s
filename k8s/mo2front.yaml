@@ -4,6 +4,7 @@ metadata:
   labels:
     app: mo2front
   name: mo2front
+  namespace: mo2
 spec:
   ports:
     - name: "8110"
@@ -21,6 +22,7 @@ metadata:
   labels:
     app: mo2front
   name: mo2front
+  namespace: mo2
 spec:
   replicas: 1
   selector:
@@ -54,6 +56,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: mo2front
+  namespace: mo2
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
