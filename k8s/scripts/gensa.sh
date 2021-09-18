@@ -1,8 +1,8 @@
 # your server name goes here
-server=https://101.200.196.30:6443
+server=https://123.57.249.127:6443
 # the name of the secret containing the service account token goes here
-name=hr-admin-token-kb6wh
-namespace=pivothr
+name=exp-admin-token-w6ptd
+namespace=exp
 
 ca=$(kubectl get secret/$name -n $namespace -o jsonpath='{.data.ca\.crt}')
 token=$(kubectl get secret/$name -n $namespace -o jsonpath='{.data.token}' | base64 --decode)

@@ -31,7 +31,7 @@ spec:
           image: registry.cn-hangzhou.aliyuncs.com/mo2/yjs-server:latest
           name: yjs
           ports:
-            - containerPort: 80
+            - containerPort: 1234
           resources:
             limits:
               cpu: 30m
